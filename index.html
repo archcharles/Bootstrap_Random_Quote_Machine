@@ -1,0 +1,125 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Boostrap meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- Bootstrap CSS - JS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
+    <!-- Font Awesome icons for comment, feather, & twitter -->
+    <script src="#"></script>
+    <!-- Link quotes file -->
+    <script src="quotes.js"></script>
+
+    <title>Random Quote Generator</title>
+
+    <script>
+      //  const quotesStore = [
+      //	  {
+      //	    author: "John Paul II",
+      //		  quote: "Do not abandon yourselves to despair. We are the Easter people and hallelujah is our song."
+      //	  },
+      //	  {
+      //	    author: "Padre Pio",
+      //		  quote: "Pray, hope, and don't worry. Worry is useless. God is merciful and will hear your prayer."
+      //	  },
+      //	  {
+      //	    author: "Padre Pio",
+      //		  quote: "Joy, with peace, is the sister of charity. Serve the Lord with laughter."
+      //	  }
+      //	]
+
+      // Display random quote on first load
+      window.onload = init;
+      function init() {
+  	    return generateQuote();
+      }
+
+    	function generateQuote() {
+    	  // Quote Generator
+    	  let randomQuoteIndex =  [Math.floor(Math.random() * quotesStore.length)];
+        let selectedQuote = quotesStore[randomQuoteIndex];
+        document.getElementById("text").innerText = selectedQuote.quote;
+    	  document.getElementById("author").innerText = selectedQuote.author;
+
+        let twitterLink = "https://twitter.com/intent/tweet?hashtags=quotes&text="
+    	  // add quote to twitter link
+    	  twitterLink += encodeURIComponent('"' + selectedQuote.quote);
+    	  // add author to twitter link
+    	  twitterLink += encodeURIComponent('" - ' + selectedQuote.author);
+    	  document.getElementById("tweet-quote").href = twitterLink;
+
+        // Generate random RGB color
+        let colorR = Math.floor(Math.random() * 127);
+        let colorG = Math.floor(Math.random() * 127);
+        let colorB = Math.floor(Math.random() * 127);
+        // Generate RGB color string using the format "rgb("+ r +","+ g +","+ b +")"
+        document.getElementById("htmlBody").style.backgroundColor = "RGB("+ colorR +","+ colorG +","+ colorB +")";
+        document.getElementById("text").style.color = "RGB("+ colorR +","+ colorG +","+ colorB +")";
+        document.getElementById("cardHeader").style.color = "RGB("+ colorR +","+ colorG +","+ colorB +")";
+        document.getElementById("author").style.color = "RGB("+ colorR +","+ colorG +","+ colorB +")";
+
+        // document.getElementById('htmlBody').animate(
+        //   {
+        //     backgroundColor: "RGB("+ colorR +","+ colorG +","+ colorB +")",
+        //     color: "RGB("+ colorR +","+ colorG +","+ colorB +")"
+        //   },
+        //   1000
+        // );
+
+
+      }
+
+    </script>
+
+    <style>
+      /* RECALL:
+      Use element to style elements
+      Use .class to style a class
+      Use #ID to style element with ID attribute
+      Use [attribute=value] to style custom attribute group */
+      /* body {
+        background-color: grey;
+      } */
+      /* #quote-box {
+        background-color: white;
+      } */
+    </style>
+
+  </head>
+
+  <body id="htmlBody">
+    <!-- Bootstrap CSS -->
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+    <!-- FCC CDN link to run the tests -->
+  	<script src="https://cdn.freecodecamp.org/testable-projects-fcc/v1/bundle.js"></script>
+
+    <div class=”container-fluid”>
+      <div class="mx-auto px-4 py-4" id="quote-box" style="width: 70%;">
+        <wrapper id="quote-box">
+          <div  class="card text-bg-light">
+            <div class="card-header" id="cardHeader">Quote</div>
+            <div class="card-body">
+              <h5 class="card-title">
+                <div id="text"></div>
+              </h5>
+              <p class="card-text">
+                <div id="author"></div>
+              </p>
+              <!-- <div class="row px-2"> -->
+                <!-- <div class="col-sm-6"> -->
+                  <button class="btn btn-outline-success" id="new-quote" onClick="generateQuote()"> New quote</button>
+                <!-- </div> -->
+                <!-- <div class="col-sm-6"> -->
+                  <a class="btn btn-outline-primary" id="tweet-quote" target="_blank">Tweet quote</a>
+                <!-- </div> -->
+              <!-- </div> -->
+            </div>
+          </div>
+    	  </wrapper>
+      </div>
+    </div>
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-u1OknCvxWvY5kfmNBILK2hRnQC3Pr17a+RTT6rIHI7NnikvbZlHgTPOOmMi466C8" crossorigin="anonymous"></script>
+  </body>
+</html>
